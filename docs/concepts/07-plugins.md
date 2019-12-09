@@ -6,7 +6,7 @@ A plugin is simply a function that takes an `Editor` object and returns it after
 
 For example, a plugin that handles images:
 
-```js
+```javascript
 const withImages = editor => {
   const { exec, isVoid } = editor
 
@@ -30,7 +30,7 @@ const withImages = editor => {
 
 And then to use the plugin, simply:
 
-```js
+```javascript
 import { createEditor } from 'slate'
 
 const editor = withImages(createEditor())
@@ -48,7 +48,7 @@ This plugin composition model makes Slate extremely easy to extend!
 
 In addition to the plugin functions, you might want to expose helper functions that are used alongside your plugins. For example:
 
-```js
+```javascript
 const ImageElement = {
   isImageElement(value) {
     return Element.isElement(element) && element.type === 'image'
@@ -58,7 +58,7 @@ const ImageElement = {
 
 That way you can reuse your helpers. Or even mix them with the core Slate helpers to create your own bundle, like:
 
-```js
+```javascript
 import { Element } from 'slate'
 import { ImageElement } from './images'
 
@@ -69,3 +69,4 @@ export const MyElement = {
 ```
 
 Then you can use `MyElement` everywhere and have access to all your helpers in one place.
+

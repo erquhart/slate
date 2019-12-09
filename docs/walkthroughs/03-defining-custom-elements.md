@@ -1,4 +1,4 @@
-# Defining Custom Block Nodes
+# Defining Custom Elements
 
 In our previous example, we started with a paragraph, but we never actually told Slate anything about the `paragraph` block type. We just let it use its internal default renderer, which uses a plain old `<div>`.
 
@@ -6,7 +6,7 @@ But that's not all you can do. Slate lets you define any type of custom blocks y
 
 We'll show you how. Let's start with our app from earlier:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -46,7 +46,7 @@ The problem is, code blocks won't just be rendered as a plain paragraph, they'll
 
 Element renderers are just simple React components, like so:
 
-```js
+```javascript
 // Define a React component renderer for our code blocks.
 const CodeElement = props => {
   return (
@@ -65,7 +65,7 @@ And see that `props.children` reference? Slate will automatically render all of 
 
 And here's a component for the "default" elements:
 
-```js
+```javascript
 const DefaultElement = props => {
   return <p {...props.attributes}>{props.children}</p>
 }
@@ -73,7 +73,7 @@ const DefaultElement = props => {
 
 Now, let's add that renderer to our `Editor`:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -132,9 +132,9 @@ const DefaultElement = props => {
 }
 ```
 
-Okay, but now we'll need a way for the user to actually turn a block into a code block. So let's change our `onKeyDown` function to add a `` Ctrl-` `` shortcut that does just that:
+Okay, but now we'll need a way for the user to actually turn a block into a code block. So let's change our `onKeyDown` function to add a ``Ctrl-```  shortcut that does just that:
 
-```js
+```javascript
 // Import the `Editor` helpers from Slate.
 import { Editor } from 'slate'
 
@@ -195,11 +195,11 @@ const DefaultElement = props => {
 }
 ```
 
-Now, if you press `` Ctrl-` `` the block your cursor is in should turn into a code block! Magic!
+Now, if you press ``Ctrl-```  the block your cursor is in should turn into a code block! Magic!
 
-But we forgot one thing. When you hit `` Ctrl-` `` again, it should change the code block back into a paragraph. To do that, we'll need to add a bit of logic to change the type we set based on whether any of the currently selected blocks are already a code block:
+But we forgot one thing. When you hit ``Ctrl-```  again, it should change the code block back into a paragraph. To do that, we'll need to add a bit of logic to change the type we set based on whether any of the currently selected blocks are already a code block:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -250,4 +250,5 @@ const App = () => {
 }
 ```
 
-And there you have it! If you press `` Ctrl-` `` while inside a code block, it should turn back into a paragraph!
+And there you have it! If you press ``Ctrl-```  while inside a code block, it should turn back into a paragraph!
+

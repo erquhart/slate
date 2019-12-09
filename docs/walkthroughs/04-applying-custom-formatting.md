@@ -6,7 +6,7 @@ In this guide, we'll show you how to add custom formatting options, like **bold*
 
 So we start with our app from earlier:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -58,7 +58,7 @@ const App = () => {
 
 And now, we'll edit the `onKeyDown` handler to make it so that when you press `control-B`, it will add a `bold` format to the currently selected text:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -132,7 +132,7 @@ Okay, so we've got the hotkey handler setup... but! If you happen to now try sel
 
 For every format you want to add to your schema, Slate will break up the text content into "leaves", and you need to tell Slate how to read it, just like for elements. So let's define a `Leaf` component:
 
-```js
+```javascript
 // Define a React component to render leaves with bold text.
 const Leaf = props => {
   return (
@@ -150,7 +150,7 @@ Pretty familiar, right?
 
 And now, let's tell Slate about that leaf. To do that, we'll pass in the `renderLeaf` prop to our editor. Also, let's allow our formatting to be toggled by adding active-checking logic.
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -235,3 +235,4 @@ const Leaf = props => {
 ```
 
 Now, if you try selecting a piece of text and hitting `Ctrl-B` you should see it turn bold! Magic!
+

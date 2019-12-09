@@ -2,21 +2,21 @@
 
 Slate is a monorepo divided up into multi npm packages, so to install it you do:
 
-```
+```text
 yarn add slate slate-react
 ```
 
 You'll also need to be sure to install Slate's peer dependencies:
 
-```
+```text
 yarn add react react-dom
 ```
 
-_Note, if you'd rather use a pre-bundled version of Slate, you can `yarn add slate` and retrieve the bundled `dist/slate.js` file! Check out the [Using the Bundled Source](./using-the-bundled-source.md) guide for more information._
+_Note, if you'd rather use a pre-bundled version of Slate, you can `yarn add slate` and retrieve the bundled `dist/slate.js` file! Check out the_ [_Using the Bundled Source_](https://github.com/erquhart/slate/tree/1141f59f4f9b1f9158e9b96e19bf11ef9fb3dbce/docs/walkthroughs/using-the-bundled-source.md) _guide for more information._
 
 Once you've installed Slate, you'll need to import it.
 
-```js
+```javascript
 // Import the Slate editor factory.
 import { createEditor } from 'slate'
 
@@ -118,7 +118,7 @@ There's only one last step. So far we've been using an empty `[]` array as the i
 
 The value is just plain JSON. Here's one containing a single paragraph block with some text in it:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -149,3 +149,4 @@ const App = () => {
 There you have it!
 
 That's the most basic example of Slate. If you render that onto the page, you should see a paragraph with the text `A line of text in a paragraph.`. And when you type, you should see the text change!
+

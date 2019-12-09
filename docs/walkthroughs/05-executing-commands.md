@@ -1,4 +1,4 @@
-# Using Commands
+# Executing Commands
 
 Up until now, everything we've learned has been about how to write one-off logic for your specific Slate editor. But one of the most powerful things about Slate is that it lets you model your specific rich text "domain" however you'd like, and write less one-off code.
 
@@ -10,7 +10,7 @@ Let's see how this works.
 
 We'll start with our app from earlier:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
   const [selection, setSelection] = useState(null)
@@ -85,7 +85,7 @@ It has the concept of "code blocks" and "bold formatting". But these things are 
 
 We can instead implement these domain-specific concepts by extending the `editor` object:
 
-```js
+```javascript
 // Create a custom editor plugin function that will augment the editor.
 const withCustom = editor => {
   return editor
@@ -163,11 +163,11 @@ const App = () => {
 }
 ```
 
-Since we haven't yet defined (or overridden) any commands in `withCustom`, nothing will change yet. Our app will still function exactly as it did before.
+Since we haven't yet defined \(or overridden\) any commands in `withCustom`, nothing will change yet. Our app will still function exactly as it did before.
 
 However, now we can start extract bits of logic into reusable methods:
 
-```js
+```javascript
 const withCustom = editor => {
   const { exec } = editor
 
@@ -286,7 +286,7 @@ const App = () => {
 
 Now our commands are clearly defined and you can invoke them from anywhere we have access to our `editor` object. For example, from hypothetical toolbar buttons:
 
-```js
+```javascript
 const App = () => {
   const editor = useMemo(() => withCustom(withReact(createEditor())), [])
   const [selection, setSelection] = useState(null)
@@ -374,7 +374,7 @@ And you don't necessarily need to define it all in the same plugin. You can use 
 
 For example, you can use the `slate-history` package to add a history stack to your editor, like so:
 
-```js
+```javascript
 import { Editor } from 'slate'
 import { withHistory } from 'slate-history'
 
@@ -387,3 +387,4 @@ const editor = useMemo(
 And there you have it! We just added a ton of functionality to the editor with very little work. And we can keep all of our command logic tested and isolated in a single place, making the code easier to maintain.
 
 That's why plugins are awesome. They let you get really expressive while also making your codebase easier to manage. And since Slate is built with plugins as a primary consideration, using them is dead simple!
+
